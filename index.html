@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<script type="text/javascript" src="js/common.js" ></script>
+	<script type="text/javascript" src="js/liqun.js" ></script>
+	<script>
+		window.onload = function  () {
+			
+			//模态窗口；
+			var box = document.getElementById("box");
+			var title = getByClassName("title")[0];
+			var Close = getByClassName("Close1")[0];
+			var deLoad = getByClassName("deLoad")[0];
+			var welLoad = document.getElementById("welLoad");
+			var sp = getByClassName("sp")[0];
+			var load1 = getByClassName("load1")[0];
+			var fal = getByClassName("fal")[0];
+			deLoad.onclick = function  () {
+				box.style.display="block";
+				
+			}
+			load1.onclick = function (){
+				welLoad.style.display="none";
+				sp.style.display="block";
+				box.style.display="none";
+			}
+			Close.onclick = function  () {
+				box.style.display="none";
+			}
+			fal.onclick = function  () {
+				box.style.display="none";
+			}
+			//登录窗口拖拽；
+			var title = getByClassName("title")[0];
+			var load = getByClassName("load")[0];
+			title.onmousedown = function (e){
+				var evt = e || event;
+				var reX = evt.offsetX;
+				var reY = evt.offsetY;
+				load.onmousemove = function  (e) {
+					load.style.margin="0";
+					var evt = e || event;
+					var x = evt.clientX;
+					var y = evt.clientY;
+					load.style.left = x-reX +"px";
+					load.style.top = y-reY + "px";
+				}
+				document.onmouseup = function  () {
+					load.onmousemove = "";
+				}
+			}
+			
+			//下拉菜单；
+			var int1 = getByClassName("int1")[0];
+			var selects=getByClassName("selects")[0];
+			var oUl = getByClassName("oUl")[0];
+			var lists = oUl.children;
+			var Close2 = selects.getElementsByTagName("button")[0];
+			int1.onclick = function  () {
+				selects.style.display="block";
+			}
+			for (var i=0; i<lists.length; i++){
+				lists[i].onclick = function (){
+					int1.value=this.innerHTML;
+				}	
+			}
+			Close2.onclick =function  () {
+				selects.style.display="none";
+			}
+			//右侧菜单；
+			var second = getByClassName("second")[0];
+			var list2s = second.getElementsByTagName("a");
+			var menuR = getByClassName("menuR")[0];
+			var mRh = menuR.children;
+			for (var i=0; i<list2s.length; i++){
+				list2s[i].num=i;
+				list2s[i].onmouseover=function  () {
+					menuR.style.display="block";
+					for(var j=0; j<mRh.length; j++){
+						mRh[j].style.display="none";
+					}
+					mRh[this.num+1].style.display="block";
+				}
+			}
+			for (var i=0; i<mRh.length; i++){
+				mRh[i].onmouseout=function  () {
+					menuR.style.display="none";
+				}
+			}
+			//图片轮播；
+			var bo = getByClassName("bo")[0];
+			var pict = bo.children;
+			var pic = getByClassName("pic")[0];
+			var oImg = pic.getElementsByTagName("img")[0];
+			for (var i=0; i<pict.length; i++){
+				pict[i].index = i;
+				pict[i].onmouseover=function  () {
+					for(var j=0; j<pict.length; j++){
+						pict[j].style.background="#656565";
+						pict[j].style.color="#BABABA";
+					}
+					this.style.background="#fff";
+					this.style.color="#000";
+					oImg.src="img/"+(this.index+1)+".jpg";
+				}
+			}
+		}	
+
+	</script>
+	<body>
+		<!--模态窗口====================================-->
+		<div id="box">
+			<div class="load">
+				<div class="title" id="title">
+					<span>用户登录</span>
+					<button class="Close1" id="Close1">X</button>
+				</div>
+				<div class="dLoad" id="dLoad">
+					<ul class="Ul">
+						<li class="first"><span>请输入用户名：</span><input type="text"/></li>
+						<li><span>请输入密&nbsp;&nbsp;码：</span><input type="password"/></li>
+					</ul>
+					<button class="load1" id="load1">登录</button>
+					<button class="fal" id="fal">取消</button>
+				</div>
+			</div>
+		</div>
+		<!--header================================-->
+		<div id="header">
+			<img src="img/header.png" />
+		</div>
+		
+		<!--nav===================================-->
+		<div id="nav">
+			<div class="nav1 left">
+				<ul id="welLoad">
+					<li>Hi,欢迎来到利群商城！</li>
+					<li id="deLoad" class="deLoad">请登录</li>
+					<li>免费注册</li>
+				</ul>
+				<span class="sp" id="sp">欢迎，王先生来到利群商城</span>
+			</div>
+			<div class="nav2 left">
+				<ul>
+					<li><a class="as1" href="">我的订单</a></li>
+					<li><img src="img/peo.png" /><a class="as2" href="">会员中心</a></li>
+					<li><a class="as3" href="">客户服务</a> </li>
+					<img class="ig3" src="img/j.png" />
+					<li><img src="img/pho.png" /> <a class="as4" href="">手机利群</a></li>
+					<li><a class="as5" href="">利群官网</a></li>
+				</ul>
+			</div>
+			<div class="nav3 left">
+				<span>关注利群:</span>
+				<img src="img/er.png" />
+				<img class="im" src="img/ten.png" />
+				<img src="img/xin.png" />
+			</div>
+		</div>
+		<!--search================================-->
+		<div id="search">
+			<div class="sea1 left">
+				<img class="ig1" src="img/e.png" />
+				<img class="ig2" src="img/baby.png" />
+			</div>
+			<div class="sea2 left">
+				<div class="ser1">
+					<input type="image" src="img/search.jpg" />
+					<input class="int1" type="text" placeholder="美赞臣" />
+					<input class="int2" type="button" value="搜索" />
+				</div>
+				<!--下拉菜单===========================-->
+				<div class="selects">
+					<ul class="oUl">
+						<li>苹果手机</li>
+						<li>摩托手机</li>
+						<li>华为手机</li>
+						<li>小米手机</li>
+						<li>诺基亚手机</li>
+						<li>魅族手机</li>
+						<li>锤子手机</li>
+					</ul>
+					<button class="cloBtn">关闭</button>
+				</div>
+				<div class="ser2">
+					<ul>
+						<li class="li1">热门搜索:</li>
+						<li><a href="">丹姿大促</a></li>
+						<li><a href="">纸品联合</a></li>
+						<li><a href="">中秋月饼</a></li>
+						<li><a href="">亨氏专场</a></li>
+						<li><a href="">手机大促</a></li>
+						<li><a href="">家电阅兵</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="sea3 left">
+				<img class="ig1" src="img/go.png" />
+				<img class="ig2" src="img/ke.png" />
+			</div>
+		</div>
+		<!--main==================================-->
+		<div id="main">
+			<div class="smenu left">
+				<div class="m_tit">
+					全部商品分类
+				</div>
+				<div class="m_con">
+					<ul class="first">
+						<li><img class="m1" src="img/min.png" /></li>
+						<li><img class="m1" src="img/jiu.png" /></li>
+						<li><img class="m1" src="img/hu.png" /></li>
+						<li><img class="m1" src="img/ri.png" /></li>
+						<li><img class="m1" src="img/mu.png" /></li>
+						<li><img class="m1" src="img/ji.png" /></li>
+						<li><img class="m1" src="img/jia.png" /></li>
+						<li><img class="m1" src="img/xu.png" /></li>
+						<li><img class="m1" src="img/shi.png" /></li>
+					</ul>
+					<ul class="second" id="second">
+						<li><a href="">民生食品 </a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">粮油调味&nbsp;生鲜</li>
+						<li><a href="">零食酒水</a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">休闲零食&nbsp;饮料&nbsp;酒</li>
+						<li><a href="">美妆洗护</a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">洗护&nbsp;面部护理&nbsp;彩妆</li>
+						<li> <a href="">日用百货</a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">生活用纸&nbsp;清洁&nbsp;居家</li>
+						<li><a href="">母婴玩具</a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">奶粉&nbsp;尿裤&nbsp;洗护&nbsp;喂养</li>
+						<li><a href="">手机数码</a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">粮油调味&nbsp;生鲜</li>
+						<li> <a href="">家用电器</a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">粮油调味&nbsp;生鲜</li>
+						<li><a href="">虚拟服务</a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">粮油调味&nbsp;生鲜</li>
+						<li><a href="">时尚名品</a><img class="g1" src="img/lis.png" /></li>
+						<li class="lis">粮油调味&nbsp;生鲜</li>
+					</ul>
+				</div>
+			</div>
+			<div class="m_rg left">
+				<div class="navg">
+					<ul>
+						<li><a href="">首页</a></li>
+						<li><a href="">利群生鲜</a></li>
+						<li><a href="">利群超市</a></li>
+						<li><a href="">母婴馆</a></li>
+						<li><a href="">利群团</a></li>
+						<li><a href="">药品商城</a></li>
+						<li><a href="">积分商城</a></li>
+						<li><a href="">水电煤缴费</a></li>
+					</ul>
+					<a><img src="img/qian.png" /></a>
+				</div>
+				<!--右侧菜单=============================-->
+				<div class="menuR" id="menuR">
+					<div class="mRh">吾辈必当勤勉</div>
+					<div class="mRh">持书仗剑耀中华</div>
+					<div class="mRh">不积跬步</div>
+					<div class="mRh">不一致千里</div>
+					<div class="mRh">只要遇见对的人</div>
+					<div class="mRh">再早也太晚</div>
+					<div class="mRh">世界那么大</div>
+					<div class="mRh">真他妈想去看看</div>
+					<div class="mRh">好了就这样吧！</div>
+				</div>
+				<div class="banner">
+					<div class="Mbanner left">
+						<div class="pic">
+							<img src="img/1.jpg" />
+							<div class="lub">
+								<ul class="bo">
+									<li>1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+									<li>5</li>
+								</ul>
+							</div>
+						</div>
+						
+						
+					</div>
+					<div class="news left">
+						<div class="bgd"></div>
+						<div class="kNews">
+							<h3>利群快报</h3>
+							<ul>
+								<li><img src="img/n.png"/><a class="first">180元超级萌宝红包辣妈免费领</a></li>
+								<li><a>中国好童车&nbsp;品牌精品&nbsp;全场低至4折</a></li>
+								<li><a>利群员工福利-中秋风味大礼包</a></li>
+								<li><a>中国好童车&nbsp;品牌精品&nbsp;全场低至4折</a></li>
+								<li><a>利群员工福利-中秋风味大礼包</a></li>
+								<li><a>中国好童车&nbsp;品牌精品&nbsp;全场低至4折</a></li>
+								<li><a>利群员工福利-中秋风味大礼包</a></li>
+								<li><a>中国好童车&nbsp;品牌精品&nbsp;全场低至4折</a></li>
+							</ul>
+						</div>
+						<div class="cet"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	</body>
+</html>
